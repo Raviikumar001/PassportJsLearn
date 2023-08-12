@@ -1,7 +1,10 @@
 const express = require("express");
 const passport = require("passport");
 const session = require('express-session');
+require('dotenv').config();
 require("./auth");
+
+console.log(process.env.GOOGLE_CLIENT_SECRET);
 const app = express();
 app.use(session({ secret: 'cats'}));
 app.use(passport.initialize())
