@@ -8,7 +8,9 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/auth/google/callback"
   },
-  function() {
+  function(accessToken, refreshToken, profile,done) {
+    console.log('passport callback function fired');
+    console.log(profile);
     
   }
 ));
