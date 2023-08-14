@@ -25,5 +25,11 @@ passport.authenticate('google', {
 
 );
 
+//callback route for google to redirect to
 
-module.exports = router;
+router.get('/google/callback',(req,res)=>{
+    res.send('you reached the callback uri')
+})
+
+
+module.exports = router; 
