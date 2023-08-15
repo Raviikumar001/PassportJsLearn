@@ -8,14 +8,8 @@ require('./config/passport-setup');
 
 
 const app = express();
-(async () => {
-try {
-  await mongoose.connect(process.env.MONGO_DB_URI);
-  console.log('Connected to MongoDB');
-} catch (err) {
-  console.error('Error connecting to MongoDB:', err);
-}
-})();
+
+connectToDb();
 app.set('view engine','ejs');
 
 //set up routes
@@ -28,3 +22,14 @@ app.get('/',(req,res)=>{
 app.listen(3000,function(){
   console.log('App is listening on port 3000');
 })
+
+
+async function  connectToDb()
+{
+  try {
+    await mongoose.connect(process.env.MONGO_DB_URI);
+    console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err);
+  }
+}
