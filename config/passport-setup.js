@@ -10,8 +10,22 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback"
   },
   function(accessToken, refreshToken, profile,done) {
-    console.log('passport callback function fired');
-    console.log(profile);
+
+    //  check if user exists
+    User.findOne({googleId:profile.id}).then((currentUser)=> {
+      if(currentUser){
+          console.log('user: '+ currentUser);
+      }else{
+        new User({
+          username: profile.displayName,
+          googleId: profile.id,
+      }).save().then((newUser) => {
+          console.log('new user created: ', newUser);
+      });
+      }
+    })
+
+    
     
   }
 ));
