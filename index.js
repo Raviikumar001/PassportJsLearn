@@ -1,5 +1,6 @@
 const express =require('express');
 const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes')
 const mongoose = require('mongoose');
 const cookieSession= require('cookie-session');
 const passport = require('passport');
@@ -24,6 +25,8 @@ app.use(passport.session())
 //set up routes
 
 app.use('/auth',authRoutes);
+
+app.use('/profile',profileRoutes);
 
 app.get('/',(req,res)=>{
   res.render("home")
