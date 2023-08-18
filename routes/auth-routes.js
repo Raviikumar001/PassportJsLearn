@@ -10,7 +10,8 @@ router.get("/login", (req, res) => {
 //auth logout
 router.get("/logout", (req, res) => {
   //handle with logout.
-  res.send("loggingout");
+  req.logout();
+  res.redirect('/');
 });
 
 //auth with google
